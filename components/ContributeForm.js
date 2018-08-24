@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import { Form, Input, Button } from 'semantic-ui-react';
+import { Form, Input, Button, Message } from 'semantic-ui-react';
 import Campaign from '../ethereum/campaign';
 import web3 from '../ethereum/web3';
 import { Router } from '../routes';
@@ -30,7 +30,7 @@ class ContributeForm extends Component {
             this.setState({ errorMessage: err.message});
         }
 
-        this.setState({ loading: false });
+        this.setState({ loading: false, value: '' });
     }
 
     render() {
@@ -44,7 +44,7 @@ class ContributeForm extends Component {
                     label="ether" 
                     labelPosition="right" />
                 </Form.Field>
-                <Message header="Oops!" content={this.state.errorMessage} />
+                <Message error header="Oops!" content={this.state.errorMessage} />
                 <Button primary loading={this.state.loading}>
                     Contribute!
                 </Button>
